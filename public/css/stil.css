@@ -62,3 +62,8 @@ a {
 #pomoc {
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+.images {
+  max-width: 200px;
+  padding-left: 20px;
+} 

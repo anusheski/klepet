@@ -13,6 +13,7 @@ function divElementHtmlTekst(sporocilo) {
 }
 
 function procesirajVnosUporabnika(klepetApp, socket) {
+  images($('#poslji-sporocilo').val());
   var sporocilo = $('#poslji-sporocilo').val();
   sporocilo = dodajSmeske(sporocilo);
   var sistemskoSporocilo;
@@ -74,6 +75,7 @@ $(document).ready(function() {
   });
 
   socket.on('sporocilo', function (sporocilo) {
++    $('#sporocila').append(images(sporocilo.besedilo));
     var novElement = divElementEnostavniTekst(sporocilo.besedilo);
     $('#sporocila').append(novElement);
   });
@@ -133,4 +135,10 @@ function dodajSmeske(vhodnoBesedilo) {
       preslikovalnaTabela[smesko] + "' />");
   }
   return vhodnoBesedilo;
+}
+
+function images(besedilo){
+	var result=besedilo.match(/(http|https):..[^ ]*\.(gif|jpg|png)/g);
+	for(var i=0; i<result.length; i++)
+		$("#sporocila").append('<img src="'+result[i]+'" class="slika" />');
 }
