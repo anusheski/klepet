@@ -15,6 +15,7 @@ function divElementHtmlTekst(sporocilo) {
 function procesirajVnosUporabnika(klepetApp, socket) {
   images($('#poslji-sporocilo').val());
   var sporocilo = $('#poslji-sporocilo').val();
+  videos($('#poslji-sporocilo').val());
   sporocilo = dodajSmeske(sporocilo);
   var sistemskoSporocilo;
 
@@ -75,7 +76,11 @@ $(document).ready(function() {
   });
 
   socket.on('sporocilo', function (sporocilo) {
+<<<<<<< HEAD
 +    $('#sporocila').append(images(sporocilo.besedilo));
+=======
++   $('#sporocila').append(videos(sporocilo.besedilo));
+>>>>>>> youtube
     var novElement = divElementEnostavniTekst(sporocilo.besedilo);
     $('#sporocila').append(novElement);
   });
@@ -141,4 +146,10 @@ function images(besedilo){
 	var result=besedilo.match(/(http|https):..[^ ]*\.(gif|jpg|png)/g);
 	for(var i=0; i<result.length; i++)
 		$("#sporocila").append('<img src="'+result[i]+'" class="slika" />');
+}
+
+function videos(besedilo){
+	var result=besedilo.match(/(http|https):..www.youtube.com.watch.v\S{12}/g);
+	for(var i=0; i<result.length; i++)
+		$("#sporocila").append('<iframe src="https://www.youtube.com/embed/'+result[i].split(/=/)[1]+'" allowfullscreen class="videos" ></iframe>');
 }

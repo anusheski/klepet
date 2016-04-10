@@ -66,4 +66,10 @@ a {
 .images {
   max-width: 200px;
   padding-left: 20px;
-} 
+}
+
+.videos {
+  width: 200px;
+  height: 150px;
+  margin-left: 20px;
+}
